@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:13:27 by fyudris           #+#    #+#             */
-/*   Updated: 2025/08/12 00:20:14 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/08/12 00:31:41 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_program
 	int				num_of_philos;
 	long			time_to_die;
 	long			time_to_eat;
+	long			time_to_sleep;
 	int				num_of_meals;
 	long			start_time;
 	t_philo			*philos;
@@ -71,4 +72,16 @@ typedef struct s_program
 	pthread_mutex_t	death_lock;
 	int				stop_simulation;
 }	t_program;
+
+// --- Function Prototypes ---
+// From utils/ft_atoi.c
+int		ft_atoi(const char *str);
+
+// From utils/utils.c
+long	get_time(void);
+void	smart_sleep(long ms_to_sleep, t_program *program);
+void	print_status(t_philo *philo, const char *status_msg);
+
+// From init/init.c
+int		init_program(t_program *program, int argc, char **argv);
 #endif
