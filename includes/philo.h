@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:13:27 by fyudris           #+#    #+#             */
-/*   Updated: 2025/08/12 00:31:41 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/08/12 01:04:01 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
 
 /**
  * @brief Represents a single philosopher.
@@ -74,14 +75,20 @@ typedef struct s_program
 }	t_program;
 
 // --- Function Prototypes ---
-// From utils/ft_atoi.c
-int		ft_atoi(const char *str);
 
-// From utils/utils.c
+// From utils
 long	get_time(void);
 void	smart_sleep(long ms_to_sleep, t_program *program);
 void	print_status(t_philo *philo, const char *status_msg);
+void	cleanup(t_program *program);
+int		ft_atoi(const char *str);
 
-// From init/init.c
+// From init
 int		init_program(t_program *program, int argc, char **argv);
+
+// From main.c
+
+
+// From tests
+void	run_tests(void);
 #endif
