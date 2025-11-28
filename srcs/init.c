@@ -6,35 +6,11 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:45:47 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 10:14:15 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 11:07:55 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-/**
- * @brief Validates and parses command line arguments into the table struct.
- * @param table The main data structure.
- * @param argv Command line arguments.
- * @return 0 on success, 1 on failure.
- */
-static int	parse_input(t_table *table, char **argv)
-{
-	table->philo_nbr = ft_atol(argv[1]);
-	table->time_die = ft_atol(argv[2]);
-	table->time_eat = ft_atol(argv[3]);
-	table->time_sleep = ft_atol(argv[4]);
-	if (argv[5])
-		table->must_eat_count = ft_atol(argv[5]);
-	else
-		table->must_eat_count = -1;
-	if (table->philo_nbr < 1 || table->philo_nbr > 200
-			|| table->time_die < 0 || table->time_eat < 0
-			|| table-> time_sleep < 0
-			|| (argv[5] && table->must_eat_count < 0))
-			return (error_exit("Invalid arguments (Must be positive int)."));
-	return (0);
-}
 
 /**
  * @brief Allocates memory for the philosophers and forks arrays.

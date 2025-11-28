@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:13:27 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 11:04:42 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 11:10:22 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	start_simulation(t_table *table);
 int		error_exit(char *str);
 long	ft_atol(const char *str);
 void	write_status(t_philo *philo, char *str);
+int		parse_input(t_table *table, char **argv);
 
 /* time.c */
 long	get_time(void);
@@ -84,4 +85,6 @@ void	*philo_routine(void *ptr);
 /* monitor.c */
 void	*monitor_routine(void *ptr);
 
+/* cleanup.c */
+void	cleanup(t_table *table);
 #endif

@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 10:12:38 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 10:11:01 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 11:10:07 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,28 @@ void	write_status(t_philo *philo, char *str)
 			philo->id, str);
 	}
 	pthread_mutex_unlock(&philo->table->write_lock);
+}
+
+/**
+ * @brief Validates and parses command line arguments into the table struct.
+ * @param table The main data structure.
+ * @param argv Command line arguments.
+ * @return 0 on success, 1 on failure.
+ */
+int	parse_input(t_table *table, char **argv)
+{
+	table->philo_nbr = ft_atol(argv[1]);
+	table->time_die = ft_atol(argv[2]);
+	table->time_eat = ft_atol(argv[3]);
+	table->time_sleep = ft_atol(argv[4]);
+	if (argv[5])
+		table->must_eat_count = ft_atol(argv[5]);
+	else
+		table->must_eat_count = -1;
+	if (table->philo_nbr < 1 || table->philo_nbr > 200
+			|| table->time_die < 0 || table->time_eat < 0
+			|| table-> time_sleep < 0
+			|| (argv[5] && table->must_eat_count < 0))
+			return (error_exit("Invalid arguments (Must be positive int)."));
+	return (0);
 }
