@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:13:27 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 09:08:38 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 09:47:26 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct s_philo
 	long			meals_eaten;
 	long			last_meal_time;
 	pthread_t		thread_id;
-	pthread_mutex_t	*first_fork;
-	pthread_mutex_t	*second_fork;
+	pthread_mutex_t	*fork_first;
+	pthread_mutex_t	*fork_second;
 	pthread_mutex_t	meal_lock;	// Protect last_meal_time variable
 	t_table			*table;
 }	t_philo;
@@ -71,4 +71,9 @@ int	init_data(t_table *table, char **argv);
 /* utils.c */
 int		error_exit(char *str);
 long	ft_atol(const char *str);
+
+/* time.c */
+long	get_time(void);
+void	precise_usleep(long time_in_ms, t_table *table);
+
 #endif

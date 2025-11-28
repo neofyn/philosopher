@@ -6,7 +6,7 @@
 #    By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/28 09:08:16 by fyudris           #+#    #+#              #
-#    Updated: 2025/11/28 09:08:19 by fyudris          ###   ########.fr        #
+#    Updated: 2025/11/28 09:50:16 by fyudris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ CPPFLAGS        := -I$(INC_DIR)
 SRCS            := \
                    srcs/main.c \
                    srcs/init.c \
-                   srcs/utils.c
+                   srcs/utils.c \
+				   srcs/time.c
 
 OBJS            := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
