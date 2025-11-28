@@ -3,7 +3,7 @@ test/
 tests/
 obj/
 philo
-*.txt
+
 
 # Prerequisites
 *.d

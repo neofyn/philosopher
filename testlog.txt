@@ -1,0 +1,164 @@
+Testing uneven numbers - they shouldn't die
+
+	5 800 200 200 10
+1       Pass    [✓]     4880 5 is eating
+2       Pass    [✓]     4880 5 is eating
+3       Pass    [✓]     4880 4 is eating
+4       Pass    [✓]     4880 5 is sleeping
+5       Pass    [✓]     4880 3 is thinking
+6       Pass    [✓]     4880 2 is eating
+7       Pass    [✓]     4880 2 is eating
+8       Pass    [✓]     4880 5 is eating
+9       Pass    [✓]     4880 4 is eating
+10      Pass    [✓]     4880 5 is eating
+	100 % correct
+____________________________________________
+	5 610 200 200 10
+1       Pass    [✓]     4881 4 is eating
+2       Pass    [✓]     4880 4 is eating
+3       Pass    [✓]     4880 4 is eating
+4       Pass    [✓]     4880 2 is eating
+5       Pass    [✓]     4880 3 is thinking
+6       Pass    [✓]     4880 2 is eating
+7       Pass    [✓]     4880 4 is eating
+8       Pass    [✓]     4880 5 is thinking
+9       Pass    [✓]     4880 4 is eating
+10      Pass    [✓]     4880 4 is eating
+	100 % correct
+____________________________________________
+	199 610 200 200 10
+1       Pass    [✓]     4720 56 is sleeping
+2       Pass    [✓]     4720 7 is thinking
+3       Pass    [✓]     4720 94 is sleeping
+4       Pass    [✓]     4721 47 is thinking
+5       Pass    [✓]     4720 29 is thinking
+6       Pass    [✓]     4720 23 is thinking
+7       Pass    [✓]     4720 2 is sleeping
+8       Pass    [✓]     4720 198 is eating
+9       Pass    [✓]     4720 24 is sleeping
+10      Pass    [✓]     4720 80 is sleeping
+	100 % correct
+____________________________________________
+Testing even numbers - they shouldn't die
+	4 410 200 100 10
+1       Pass    [✓]     3800 2 is eating
+2       Pass    [✓]     3800 4 is eating
+3       Pass    [✓]     3800 2 is eating
+4       Pass    [✓]     3801 2 is eating
+5       Pass    [✓]     3800 4 is eating
+6       Pass    [✓]     3800 2 is eating
+7       Pass    [✓]     3800 4 is eating
+8       Pass    [✓]     3800 2 is eating
+9       Pass    [✓]     3800 4 is eating
+10      Pass    [✓]     3800 4 is eating
+	100 % correct
+____________________________________________
+	4 410 200 200 10
+1       Pass    [✓]     3800 4 is eating
+2       Pass    [✓]     3800 4 is eating
+3       Pass    [✓]     3801 4 is eating
+4       Pass    [✓]     3801 4 is eating
+5       Pass    [✓]     3800 4 is eating
+6       Pass    [✓]     3800 4 is eating
+7       Pass    [✓]     3800 2 is eating
+8       Pass    [✓]     3800 4 is eating
+9       Pass    [✓]     3800 2 is eating
+10      Pass    [✓]     3800 4 is eating
+	100 % correct
+____________________________________________
+	198 610 200 200 10
+1       Pass    [✓]     3802 160 is eating
+2       Pass    [✓]     3802 184 is eating
+3       Pass    [✓]     3802 170 is eating
+4       Pass    [✓]     3802 134 is eating
+5       Pass    [✓]     3802 184 is eating
+6       Pass    [✓]     3802 16 is eating
+7       Pass    [✓]     3802 188 is eating
+8       Pass    [✓]     3803 6 is eating
+9       Pass    [✓]     3803 180 is eating
+10      Pass    [✓]     3802 162 is eating
+	100 % correct
+____________________________________________
+	198 800 200 200 10
+1       Pass    [✓]     3802 166 is eating
+2       Pass    [✓]     3802 160 is eating
+3       Pass    [✓]     3803 2 is eating
+4       Pass    [✓]     3803 186 is eating
+5       Pass    [✓]     3802 186 is eating
+6       Pass    [✓]     3802 10 is eating
+7       Pass    [✓]     3802 136 is eating
+8       Pass    [✓]     3802 125 is sleeping
+9       Pass    [✓]     3802 188 is eating
+10      Pass    [✓]     3802 4 is eating
+	100 % correct
+____________________________________________
+Testing uneven numbers - one should die
+	4 310 200 100 10
+1       Pass    [✓]     311 1 died
+2       Pass    [✓]     310 1 died
+3       Pass    [✓]     310 1 died
+4       Pass    [✓]     310 1 died
+5       Pass    [✓]     310 1 died
+6       Pass    [✓]     310 1 died
+7       Pass    [✓]     310 1 died
+8       Pass    [✓]     310 1 died
+9       Pass    [✓]     310 1 died
+10      Pass    [✓]     310 1 died
+	100 % correct
+____________________________________________
+	1 800 200 100 10
+1       Pass    [✓]     800 1 died
+2       Pass    [✓]     800 1 died
+3       Pass    [✓]     800 1 died
+4       Pass    [✓]     800 1 died
+5       Pass    [✓]     800 1 died
+6       Pass    [✓]     800 1 died
+7       Pass    [✓]     800 1 died
+8       Pass    [✓]     800 1 died
+9       Pass    [✓]     800 1 died
+10      Pass    [✓]     800 1 died
+	100 % correct
+____________________________________________
+Testing even numbers - one should die
+	3 599 200 200 10
+1       Pass    [✓]     599 3 died
+2       Pass    [✓]     599 1 died
+3       Pass    [✓]     599 1 died
+4       Pass    [✓]     599 1 died
+5       Pass    [✓]     599 1 died
+6       Pass    [✓]     599 1 died
+7       Pass    [✓]     599 1 died
+8       Pass    [✓]     599 1 died
+9       Pass    [✓]     599 1 died
+10      Pass    [✓]     599 1 died
+	100 % correct
+____________________________________________
+	31 599 200 200 10
+1       Pass    [✓]     599 29 died
+2       Pass    [✓]     599 29 died
+3       Pass    [✓]     599 29 died
+4       Pass    [✓]     599 1 died
+5       Pass    [✓]     599 1 died
+6       Pass    [✓]     600 29 died
+7       Pass    [✓]     599 1 died
+8       Pass    [✓]     599 29 died
+9       Pass    [✓]     599 29 died
+10      Pass    [✓]     600 29 died
+	100 % correct
+____________________________________________
+	131 596 200 200 10
+1       Pass    [✓]     597 129 died
+2       Pass    [✓]     597 129 died
+3       Pass    [✓]     597 129 died
+4       Pass    [✓]     597 129 died
+5       Pass    [✓]     597 129 died
+6       Pass    [✓]     597 129 died
+7       Pass    [✓]     597 129 died
+8       Pass    [✓]     597 129 died
+9       Pass    [✓]     597 129 died
+10      Pass    [✓]     597 129 died
+	100 % correct
+____________________________________________
+
+RESULT: passed: 120	failed: 0
+	100 % correct

@@ -6,7 +6,7 @@
 #    By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/28 09:08:16 by fyudris           #+#    #+#              #
-#    Updated: 2025/11/28 11:49:38 by fyudris          ###   ########.fr        #
+#    Updated: 2025/11/28 18:02:45 by fyudris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(NAME): $(OBJS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(MKDIR) $(@D)
-	@printf "$(YELLOW)Compiling:$(RESET) %-30s\r" $<
+	@printf "$(YELLOW)Compiling:$(RESET) %-30s\n" $<
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:

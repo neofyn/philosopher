@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:45:47 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 11:07:55 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 19:25:22 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	alloc_data(t_table *table)
 	if (!table->forks)
 	{
 		free(table->philos);
-		return (error_exit("Mallof failed for forks."));
+		return (error_exit("Malloc failed for forks."));
 	}
 	return (0);
 }
@@ -78,11 +78,11 @@ static int	init_philos(t_table *table)
 		table->philos[i]->meals_eaten = 0;
 		table->philos[i]->last_meal_time = 0; // Set properly when routine starts
 		table->philos[i]->table = table;
-		
+
 		// Initialize the personal meal lock
 		if (pthread_mutex_init(&table->philos[i]->meal_lock, NULL) != 0)
 			return (error_exit("Meal mutex init failed."));
-			
+
 		assign_forks(table->philos[i], table->forks, i);
 		i++;
 	}
