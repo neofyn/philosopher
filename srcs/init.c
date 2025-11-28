@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:45:47 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 19:25:22 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 20:29:17 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	assign_forks(t_philo *philo, pthread_mutex_t *forks, int i)
 	int	philo_nbr;
 
 	philo_nbr = philo->table->philo_nbr;
-	// We swap the order for odd IDs (1, 3, 5...) to break circular wait
 	if (philo->id % 2 == 0)
 	{
 		philo->fork_first = &forks[i];
@@ -74,15 +73,12 @@ static int	init_philos(t_table *table)
 		table->philos[i] = malloc(sizeof(t_philo));
 		if (!table->philos[i])
 			return (error_exit("Malloc failed for a philo."));
-		table->philos[i]->id = i + 1; // ID starts at 1
+		table->philos[i]->id = i + 1;
 		table->philos[i]->meals_eaten = 0;
-		table->philos[i]->last_meal_time = 0; // Set properly when routine starts
+		table->philos[i]->last_meal_time = 0;
 		table->philos[i]->table = table;
-
-		// Initialize the personal meal lock
 		if (pthread_mutex_init(&table->philos[i]->meal_lock, NULL) != 0)
 			return (error_exit("Meal mutex init failed."));
-
 		assign_forks(table->philos[i], table->forks, i);
 		i++;
 	}
@@ -115,7 +111,6 @@ int	init_data(t_table *table, char **argv)
 	}
 	if (init_philos(table) != 0)
 		return (1);
-
 	table->sim_running = true;
 	return (0);
 }
@@ -133,7 +128,6 @@ int	start_simulation(t_table *table)
 	i = 0;
 	while (i < table->philo_nbr)
 	{
-		// Set last meal time to start time before thread starts
 		table->philos[i]->last_meal_time = table->start_time;
 		if (pthread_create(&table->philos[i]->thread_id, NULL, \
 			philo_routine, table->philos[i]) != 0)
@@ -142,5 +136,3 @@ int	start_simulation(t_table *table)
 	}
 	return (0);
 }
-
-

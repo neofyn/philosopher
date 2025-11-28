@@ -6,15 +6,15 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:13:27 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 11:10:22 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 20:27:53 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <pthread.h>	// For threads and mutexes
-# include <sys/time.h>	// For gettimeofday
+# include <pthread.h>
+# include <sys/time.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -37,13 +37,13 @@ typedef struct s_table
 	long			time_die;
 	long			time_eat;
 	long			time_sleep;
-	long			must_eat_count;	//-1 if flag not present
+	long			must_eat_count;
 	long			start_time;
-	bool			sim_running;// Flag to stop simulation
-	pthread_mutex_t	sim_lock;	// Protects the sim_running flag
-	pthread_mutex_t	write_lock;	// Prevent scrambled print output
-	pthread_mutex_t	*forks;		// Array of fork mutexes
-	t_philo			**philos;	// Array of philosopher pointers
+	bool			sim_running;
+	pthread_mutex_t	sim_lock;
+	pthread_mutex_t	write_lock;
+	pthread_mutex_t	*forks;
+	t_philo			**philos;
 }	t_table;
 
 /**
@@ -57,7 +57,7 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	pthread_mutex_t	*fork_first;
 	pthread_mutex_t	*fork_second;
-	pthread_mutex_t	meal_lock;	// Protect last_meal_time variable
+	pthread_mutex_t	meal_lock;
 	t_table			*table;
 }	t_philo;
 
@@ -66,8 +66,8 @@ typedef struct s_philo
 /*───────────────────────────────────────────────*/
 
 /* init.c */
-int	init_data(t_table *table, char **argv);
-int	start_simulation(t_table *table);
+int		init_data(t_table *table, char **argv);
+int		start_simulation(t_table *table);
 
 /* utils.c */
 int		error_exit(char *str);

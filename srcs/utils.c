@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 10:12:38 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 11:49:08 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 20:40:23 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,14 @@ long	ft_atol(const char *str)
  */
 void	write_status(t_philo *philo, char *str)
 {
-	// 1. Lock Write (reserve stdout)
 	pthread_mutex_lock(&philo->table->write_lock);
-
-	// 2. Lock Sim (protect the read of sim_running)
 	pthread_mutex_lock(&philo->table->sim_lock);
-	
 	if (philo->table->sim_running)
 	{
 		printf("%ld %d %s\n", get_time() - philo->table->start_time, \
 			philo->id, str);
 	}
-	
-	// 3. Unlock Sim
 	pthread_mutex_unlock(&philo->table->sim_lock);
-
-	// 4. Unlock Write
 	pthread_mutex_unlock(&philo->table->write_lock);
 }
 
@@ -101,9 +93,9 @@ int	parse_input(t_table *table, char **argv)
 	else
 		table->must_eat_count = -1;
 	if (table->philo_nbr < 1 || table->philo_nbr > 200
-			|| table->time_die < 0 || table->time_eat < 0
-			|| table-> time_sleep < 0
-			|| (argv[5] && table->must_eat_count < 0))
-			return (error_exit("Invalid arguments (Must be positive int)."));
+		|| table->time_die < 0 || table->time_eat < 0
+		|| table-> time_sleep < 0
+		|| (argv[5] && table->must_eat_count < 0))
+		return (error_exit("Invalid arguments (Must be positive int)."));
 	return (0);
 }
