@@ -1,3 +1,9 @@
+tester/
+test/
+tests/
+obj/
+philo
+
 # Prerequisites
 *.d
 

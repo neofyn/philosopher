@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 10:09:02 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 10:13:50 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 11:16:32 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,15 @@ void	*philo_routine(void *ptr)
 		precise_usleep(philo->table->time_sleep, philo->table);
 		
 		write_status(philo, "is thinking");
+		// --- FIX ---
+		// If the number of philosophers is ODD, the cycle is not perfect.
+		// We force a small wait to prevent a philosopher from immediately 
+		// stealing the forks back from a starving neighbor.
+		if (philo->table->philo_nbr % 2 != 0)
+		{
+			precise_usleep(1, philo->table); 
+		}
+		// -----------------------
 	}
 	return (NULL);
 }
