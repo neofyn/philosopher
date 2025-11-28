@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 10:49:15 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 10:49:50 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 12:06:47 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ void	*monitor_routine(void *ptr)
 		if (check_if_all_ate(table))
 			return (NULL);
 			
-		// Sleep a tiny bit to reduce CPU load (optional but recommended)
-		usleep(1000);
+		// Sleep a tiny bit to reduce CPU load
+		usleep(100);
 	}
 	return (NULL);
 }

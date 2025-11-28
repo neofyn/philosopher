@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 10:12:38 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 11:10:07 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 11:49:08 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,28 @@ long	ft_atol(const char *str)
 
 /**
  * @brief Thread-safe print function.
- * Locks the write_mutex, checks if simulation is running, prints, then unlocks.
+ * FIX: Now locks BOTH write_lock and sim_lock to prevent data race.
  * @param philo The philosopher struct.
- * @param str The message to print (e.g., "is eating").
+ * @param str The message to print.
  */
 void	write_status(t_philo *philo, char *str)
 {
+	// 1. Lock Write (reserve stdout)
 	pthread_mutex_lock(&philo->table->write_lock);
-	// We check sim_running so we don't print "died" after someone else died
+
+	// 2. Lock Sim (protect the read of sim_running)
+	pthread_mutex_lock(&philo->table->sim_lock);
+	
 	if (philo->table->sim_running)
 	{
-		printf("%ld %d %s\n", get_time() - philo->table->start_time,
+		printf("%ld %d %s\n", get_time() - philo->table->start_time, \
 			philo->id, str);
 	}
+	
+	// 3. Unlock Sim
+	pthread_mutex_unlock(&philo->table->sim_lock);
+
+	// 4. Unlock Write
 	pthread_mutex_unlock(&philo->table->write_lock);
 }
 
