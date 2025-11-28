@@ -6,7 +6,7 @@
 #    By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/28 09:08:16 by fyudris           #+#    #+#              #
-#    Updated: 2025/11/28 10:14:59 by fyudris          ###   ########.fr        #
+#    Updated: 2025/11/28 10:50:05 by fyudris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRCS            := \
                    srcs/init.c \
                    srcs/utils.c \
 				   srcs/time.c \
-				   srcs/routine.c
+				   srcs/routine.c \
+				   srcs/monitor.c
 
 OBJS            := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

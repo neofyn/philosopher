@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:13:27 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 10:14:34 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 11:04:42 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,8 @@ void	precise_usleep(long time_in_ms, t_table *table);
 
 /* routine.c */
 void	*philo_routine(void *ptr);
+
+/* monitor.c */
+void	*monitor_routine(void *ptr);
 
 #endif
