@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:13:27 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 09:47:26 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 10:14:34 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,18 @@ typedef struct s_philo
 
 /* init.c */
 int	init_data(t_table *table, char **argv);
+int	start_simulation(t_table *table);
 
 /* utils.c */
 int		error_exit(char *str);
 long	ft_atol(const char *str);
+void	write_status(t_philo *philo, char *str);
 
 /* time.c */
 long	get_time(void);
 void	precise_usleep(long time_in_ms, t_table *table);
+
+/* routine.c */
+void	*philo_routine(void *ptr);
 
 #endif

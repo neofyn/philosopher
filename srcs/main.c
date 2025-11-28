@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:30:17 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 09:51:39 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 10:15:23 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,29 @@ int	main(int argc, char **argv)
 		return (error_exit("Wrong argument count."));
 	if (init_data(&table, argv) != 0)
 		return (1);
+	
+	printf("--- STEP 3 TEST: RUNNING SIMULATION (2 seconds) ---\n");
+	
+	// Start threads
+	if (start_simulation(&table) != 0)
+		return (1);
 
-	printf("--- STEP 2 TEST: FORK ASSIGNMENT ---\n");
+	// Let them run for 2 seconds
+	precise_usleep(2000, &table);
+
+	// Force stop
+	pthread_mutex_lock(&table.sim_lock);
+	table.sim_running = false;
+	pthread_mutex_unlock(&table.sim_lock);
+
+	// Join threads (wait for them to exit)
 	i = 0;
 	while (i < table.philo_nbr)
 	{
-		printf("Philo %d (Addr: %p)\n", table.philos[i]->id, (void *)table.philos[i]);
-		printf("  First Fork:  %p\n", (void *)table.philos[i]->fork_first);
-		printf("  Second Fork: %p\n", (void *)table.philos[i]->fork_second);
+		pthread_join(table.philos[i]->thread_id, NULL);
 		i++;
 	}
-	printf("------------------------------------\n");
-	printf("Time check: %ld ms\n", get_time());
-	precise_usleep(100, &table);
-	printf("Time check (+100ms): %ld ms\n", get_time());
+	printf("--- SIMULATION ENDED ---\n");
 
 	cleanup_test(&table);
 	return (0);

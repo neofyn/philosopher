@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 09:45:47 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 09:49:55 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 10:14:15 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,29 @@ int	init_data(t_table *table, char **argv)
 		return (1);
 
 	table->sim_running = true;
+	return (0);
+}
+
+/**
+ * @brief Creates the philosopher threads.
+ * @param table The main data structure.
+ * @return 0 on success, 1 on failure.
+ */
+int	start_simulation(t_table *table)
+{
+	int	i;
+
+	table->start_time = get_time();
+	i = 0;
+	while (i < table->philo_nbr)
+	{
+		// Set last meal time to start time before thread starts
+		table->philos[i]->last_meal_time = table->start_time;
+		if (pthread_create(&table->philos[i]->thread_id, NULL, \
+			philo_routine, table->philos[i]) != 0)
+			return (error_exit("Thread creation failed."));
+		i++;
+	}
 	return (0);
 }
 
