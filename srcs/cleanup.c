@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 11:06:19 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 11:06:59 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 20:20:50 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /**
  * @brief Destroys the main simulation mutexes (write and sim_lock).
+ *
  * @param table The main data structure.
  */
 static void	destroy_table_mutexes(t_table *table)
@@ -24,6 +25,10 @@ static void	destroy_table_mutexes(t_table *table)
 
 /**
  * @brief Frees the philosopher structures and their specific mutexes.
+ *
+ * Iterates through each philosopher, destroys their personal `meal_lock` mutex,
+ * and then frees the memory allocated for the `t_philo` struct itself.
+ *
  * @param table The main data structure.
  */
 static void	free_philos(t_table *table)
@@ -47,6 +52,10 @@ static void	free_philos(t_table *table)
 
 /**
  * @brief Frees the forks array and destroys their mutexes.
+ *
+ * Iterates through the forks array, destroying each fork's mutex before
+ * freeing the array's memory.
+ *
  * @param table The main data structure.
  */
 static void	free_forks(t_table *table)
@@ -67,6 +76,10 @@ static void	free_forks(t_table *table)
 /**
  * @brief Main cleanup function.
  * Destroys all mutexes and frees all allocated memory.
+ *
+ * This function is the single entry point for deallocating all resources. It
+ * calls helper functions to destroy all mutexes (forks, meal locks, table
+ * locks) and free all dynamically allocated memory in a safe order.
  * @param table The main data structure.
  */
 void	cleanup(t_table *table)

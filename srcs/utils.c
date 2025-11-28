@@ -6,7 +6,7 @@
 /*   By: fyudris <fyudris@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 10:12:38 by fyudris           #+#    #+#             */
-/*   Updated: 2025/11/28 11:49:08 by fyudris          ###   ########.fr       */
+/*   Updated: 2025/11/28 20:20:27 by fyudris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 /**
  * @brief Prints an error message to STDERR.
+ *
  * @param str The message to print.
- * @return 1 (Exit failure code).
+ * @return Always returns 1, which can be used as an error exit code
+ *         from the calling function.
  */
 int	error_exit(char *str)
 {
@@ -25,8 +27,12 @@ int	error_exit(char *str)
 
 /**
  * @brief Converts a string to a long integer.
- * Checks for validity (only digits, no signs allowed here for simplicity
- * as inputs must be positive).
+ *
+ * This function handles whitespace and an optional leading '+'. It checks for
+ * non-digit characters and ensures the resulting number does not exceed
+ * `INT_MAX`. It is designed for parsing the positive integer arguments required
+ * by the program.
+ *
  * @param str The string to convert.
  * @return The converted long, or -1 if invalid/overflow.
  */
@@ -59,8 +65,16 @@ long	ft_atol(const char *str)
 
 /**
  * @brief Thread-safe print function.
- * FIX: Now locks BOTH write_lock and sim_lock to prevent data race.
- * @param philo The philosopher struct.
+ *
+ * This function ensures that status messages are printed atomically and in
+ * order, without being garbled by other threads. It also checks if the
+ * simulation is still running before printing.
+ *
+ * It uses a double-locking mechanism:
+ * 1. `write_lock`: Serializes access to `stdout` to prevent interleaved output.
+ * 2. `sim_lock`: Protects the read of `sim_running` to ensure a message is not
+ *    printed after the simulation has officially ended (e.g., after a death).
+ *
  * @param str The message to print.
  */
 void	write_status(t_philo *philo, char *str)
@@ -70,13 +84,13 @@ void	write_status(t_philo *philo, char *str)
 
 	// 2. Lock Sim (protect the read of sim_running)
 	pthread_mutex_lock(&philo->table->sim_lock);
-	
+
 	if (philo->table->sim_running)
 	{
 		printf("%ld %d %s\n", get_time() - philo->table->start_time, \
 			philo->id, str);
 	}
-	
+
 	// 3. Unlock Sim
 	pthread_mutex_unlock(&philo->table->sim_lock);
 
@@ -86,6 +100,7 @@ void	write_status(t_philo *philo, char *str)
 
 /**
  * @brief Validates and parses command line arguments into the table struct.
+ *
  * @param table The main data structure.
  * @param argv Command line arguments.
  * @return 0 on success, 1 on failure.
